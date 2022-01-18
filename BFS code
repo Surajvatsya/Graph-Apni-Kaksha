@@ -1,0 +1,47 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+#include <bits/stdc++.h>
+
+using namespace std;
+
+int main()
+{
+  int n ;
+  cin>>n;
+  int m;
+  cin>>m;
+  vector<int>adj[n+1];
+  for(int i = 0; i<m ; i++){
+      int x,y;
+      cin>>x>>y;
+      adj[x].push_back(y);
+      adj[y].push_back(x);
+  }
+  
+  //visited  array initialize with zero
+  vector<int>vis(n+1,0);
+  
+  //visit and push 1st vertex
+  vis[1]=1;
+  queue<int>q;
+  q.push(1);
+  while(!q.empty()){
+      int node = q.front();
+      q.pop();
+      cout<<node<<endl;
+      for(auto &x : adj[node])
+      {
+          if(!vis[x]){
+              vis[x]=1;
+              q.push(x);
+          }
+      }
+  }
+    return 0;
+}
